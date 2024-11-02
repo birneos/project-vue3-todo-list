@@ -1,5 +1,13 @@
 <template>
-    <div class="todo-container w3-white w3-card-4">                    
+    <div class="todo-container w3-white w3-card-4">  
+        
+         <MyMenubar>
+              <template #buttonList>
+                <button>Option 12</button>
+              <button>Option 2</button> 
+              </template>
+        </MyMenubar>
+
         <!-- Simple header -->                                         
         <div class="w3-container w3-black w3-margin-0
             w3-bottombar w3-border-blue">
@@ -55,11 +63,13 @@
 
     </div>
 
+   
 </template>
 
 
 <script setup>
 import { ref, computed } from "vue"                        //1
+import MyMenubar from "./MyMenubar.vue";
 const                                                      //2
     _todo_text = ref(""),
     _todo_list = ref([]),
