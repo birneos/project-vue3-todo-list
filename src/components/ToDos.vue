@@ -1,6 +1,10 @@
 <template>
     <div class="todo-container w3-white w3-card-4">  
         
+        <Modal name="myModal" title="Modal example" >
+            Some important content here
+        </Modal>
+        <button @click="showDialog">Show</button>
          <MyMenubar>
               <template #buttonList>
                 <button>Option 12</button>
@@ -68,8 +72,13 @@
 
 
 <script setup>
-import { ref, computed } from "vue"                        //1
+import { ref, computed, inject } from "vue"                        //1
 import MyMenubar from "./MyMenubar.vue";
+
+const $modals = inject("$modals");
+
+
+
 const                                                      //2
     _todo_text = ref(""),
     _todo_list = ref([]),
@@ -88,6 +97,18 @@ function addToDo() {                                       //6
         text: _todo_text.value, checked: false})
         clearToDo()
     }
+}
+
+function showDialog() {
+
+    $modals.show("myModal").then(() => {
+        //Modal accepted
+        alert("accepted")
+    },
+        () => {
+            //Modal canceled
+        alert("canceled")
+    })
 }
 </script>
 
